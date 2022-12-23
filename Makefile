@@ -20,4 +20,4 @@ $(TARGET): $(TARGET).cpp
 
 
 clean:
-	$(RM) $(TARGET)
+	rm gerador
