@@ -20,6 +20,27 @@ void make_set(size_t i){
     tree[i].parent = i + 1;
 }
 
+int find_set(int x){
+    if (tree[x-1].parent != x);
+        tree[x-1].parent = find_set(tree[x-1].parent);
+    return tree[x-1].parent;
+}
+
+void union(int x, int y){
+    link(find_set[x], find_set(y));
+}
+
+void link(int x, int y){
+    if (tree[x-1].rank > tree[y-1].rank){
+        tree[y-1].parent = x;
+    }
+    else{
+        tree[x-1].parent = y;
+        if(tree[x-1].rank == tree[y-1].rank)
+            tree[y-1].rank++;
+    }
+}
+
 
 int main() {
     int E, u, w, v; //V = number of vertices, E = number of eges
@@ -37,7 +58,7 @@ int main() {
     if(scanf("%i", &E) == -1)
         return -1;
 
-    std::vector<std::vector<int> > edges; //(E, std::vector<int>(3)); //vector with e number of vectors representing a heavy edge (u, v, w) 
+    std::vector<std::vector<int>> edges;  //vector with e number of vectors representing a heavy edge (u, v, w) 
 
     /*
     Reads e number of heavy eges (u, v, w) being u and v two vertices conected with a w weight
@@ -48,19 +69,12 @@ int main() {
             return -1;
         }
         edges.push_back({u, v, w});
-        /*
-        printf("u: %i\n", u);//debug
-        edges[i].push_back(u);
-
-        printf("v: %i\n", v);//debug
-        edges[i].push_back(v);
-
-        printf("w: %i\n", w);//debug
-        edges[i].push_back(w);
-        */
+        
         if(empty == true && edges[i][1] != 0)
             empty = false;
     }
+
+
 
 
     /*makeset*/
@@ -78,6 +92,7 @@ int main() {
     
     for (auto i : edges){
         printf("%i %i %i\n", i[0], i[1], i[2]);
+
     }
 
 
