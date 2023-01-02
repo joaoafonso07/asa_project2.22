@@ -90,7 +90,7 @@ int main() {
     
     for (auto i : edges){
         //printf("%i %i %i\n", i[0], i[1], i[2]); //debug
-        if(find_set(i[0]) != find_set(i[1])){
+        if(find_set(i[0]) != find_set(i[1])){ //i thonk that is waht is causing trouble
             union_find(i[0], i[1]);
             result += i[2];
         }
