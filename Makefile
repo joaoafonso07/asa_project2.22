@@ -26,6 +26,9 @@ test :
 	./gerador < tests/test2.txt >> tests/out2.txt
 	diff tests/correct2.txt tests/out2.txt
 
+	./gerador < tests/test3.txt >> tests/out2.txt
+	diff tests/correct3.txt tests/out2.txt
+
 	rm tests/out1.txt
 	rm tests/out2.txt
 	echo "Sucess"
