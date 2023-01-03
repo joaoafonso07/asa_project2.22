@@ -6,14 +6,14 @@
 #include <climits>
 
 typedef struct {
-    int parent;
-    int rank;
+    unsigned long parent;
+    unsigned long rank;
 } node;
 
 typedef struct {
-    int u;
-    int v;
-    int w;
+    unsigned long u;
+    unsigned long v;
+    unsigned long w;
 } edge;
 
 //node *tree;
@@ -26,13 +26,13 @@ void make_set(std::vector <node> tree, size_t i){
 }
 */
 
-int find_set(node tree[], int x){
+unsigned long find_set(node tree[], unsigned long x){
     if (tree[x-1].parent != x)
         tree[x-1].parent = find_set(tree, tree[x-1].parent);
     return tree[x-1].parent;
 }
 
-void link(node tree[], int x, int y){
+void link(node tree[], unsigned long x, unsigned long y){
     //printf("link: %i %i\n", x, y); //debug
     if (tree[x-1].rank > tree[y-1].rank){
         tree[y-1].parent = x;
@@ -47,12 +47,12 @@ void link(node tree[], int x, int y){
     }
 }
 
-void union_find(node tree[], int x, int y){
+void union_find(node tree[], unsigned long x, unsigned long y){
     link(tree, find_set(tree, x), find_set(tree, y));
 }
 
 int main() {
-    int E, u, w, v; //V = number of vertices, E = number of eges
+    unsigned long E, u, w, v; //V = number of vertices, E = number of eges
     unsigned long tree_size;
     node *tree;
     unsigned long long result = 0;
@@ -85,7 +85,7 @@ int main() {
     /*
     Reads e number of heavy eges (u, v, w) being u and v two vertices conected with a w weight
     */
-    for(short i = 0; i < E; i++){ // for each i less than E add the vector to the vector c
+    for(unsigned long long i = 0; i < E; i++){ // for each i less than E add the vector to the vector c
         /*
         if(scanf("%i %i %i", &u, &v, &w) != 3){
             printf("something wrong with scanf\n");//debug
@@ -122,17 +122,17 @@ int main() {
 
     
     for (auto i : edges){
-        printf("%i %i %i\n", i.u, i.v, i.w); //debug
-        printf("p: %i %i\n", tree[i.u-1].parent, tree[i.v-1].parent); //debug
+        //printf("%i %i %i\n", i.u, i.v, i.w); //debug
+        //printf("p: %i %i\n", tree[i.u-1].parent, tree[i.v-1].parent); //debug
         if(find_set(tree, i.u) != find_set(tree, i.v)){ 
-            printf("yes\n"); //debug
+            //printf("yes\n"); //debug
             union_find(tree, i.u, i.v);
             result += i.w;
         }
         else{
-            printf("no\n");
+            //printf("no\n");//debug
         }
-        printf("-----\n"); //debug
+        //printf("-----\n"); //debug
     }
 
     
