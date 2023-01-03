@@ -122,14 +122,17 @@ int main() {
 
     
     for (auto i : edges){
-        //printf("%i %i %i\n", i[0], i[1], i[2]); //debug
-        //printf("p: %i %i\n", tree[i[0]-1].parent, tree[i[1]-1].parent); //debug
+        printf("%i %i %i\n", i.u, i.v, i.w); //debug
+        printf("p: %i %i\n", tree[i.u-1].parent, tree[i.v-1].parent); //debug
         if(find_set(tree, i.u) != find_set(tree, i.v)){ 
-            //printf("yes\n"); //debug
+            printf("yes\n"); //debug
             union_find(tree, i.u, i.v);
             result += i.w;
         }
-        //printf("-----\n"); //debug
+        else{
+            printf("no\n");
+        }
+        printf("-----\n"); //debug
     }
 
     
