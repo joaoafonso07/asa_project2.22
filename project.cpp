@@ -1,4 +1,3 @@
-//#include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
 #include <algorithm>
@@ -48,8 +47,6 @@ void union_find(node tree[], unsigned long x, unsigned long y){
 unsigned long Kruskal(node tree[], std::vector<edge> edges){
     unsigned long result = 0;
 
-
-
     for (auto i : edges){
         if(find_set(tree, i.u) != find_set(tree, i.v)){ 
             union_find(tree, i.u, i.v);
@@ -62,9 +59,9 @@ unsigned long Kruskal(node tree[], std::vector<edge> edges){
 
 int main() {
     unsigned long E, u, v, w; //E = number of eges, u = vertice, v = vertice, w = weight
-    unsigned long tree_size;
-    node *tree;
-    //unsigned long long result = 0;
+    unsigned long tree_size; //size of the tree
+    
+    node *tree; //array of nodes
 
     std::ios::sync_with_stdio(false);
     
@@ -83,7 +80,7 @@ int main() {
     /*
     Reads e number of heavy eges (u, v, w) being u and v two vertices conected with a w weight
     */
-    for(unsigned long long i = 0; i < E; i++){ // for each i less than E change the struct edge conteined in the vector edges
+    for(unsigned long long i = 0; i < E; i++){ //for each i less than E change the struct edge conteined in the vector edges
       
         std::cin >> u >> v >> w;
 
